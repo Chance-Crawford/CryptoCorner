@@ -58,9 +58,7 @@ function getPredictedNationality(name){
                 console.log(data);
 
                 if(data.country.length > 0){
-                    for(var i = 0; i < data.country.length; i++){
-                        parseCountries(data.country[i].country_id);
-                    }
+                    parseCountries(data);
                     dog();
                 }
                 else{
@@ -77,29 +75,56 @@ function getPredictedNationality(name){
 }
 
 
+// an async method allows you to wait for a specific async
+// request or function within the block to return before the
+// code moves on to next line.
+async function parseCountries(dataObj){
 
+    var countryList = [];
     
-
-
-
-function parseCountries(abbreviation){
-
-    fetch("http://api.worldbank.org/v2/country/" + abbreviation + "?format=json").then( (response) => {
-
-        if(response.ok){
-            response.json().then( (data) => {
-                console.log(data);
-                console.log(data[1][0].name);
-            });
-        }
-        else{
-            alert("error for parsing country to full name");
-        }
+    // loop through each country 2 digit abbreviation
+    // and parse it to its full name.
+    for(var i = 0; i < dataObj.country.length; i++){
+        // we are forcing the for loop to pause and await
+        // the http request to return. If we didnt do this,
+        // some of the countries could display out of order.
+        // because to for loop would continue on to the
+        // next index in the array
         
-    });
+        await fetch("http://api.worldbank.org/v2/country/" + dataObj.country[i].country_id + "?format=json").then( (response) => {
+            
+            if(response.ok){
+                response.json().then( (data) => {
+                    console.log(data);                  
+                    console.log(data[1][0].name);
+                    countryList.push(data[1][0].name);
+                    console.log(countryList.length);
+                    console.log(countryList);
+                    if(countryList.length === dataObj.country.length){
+                        displayCountries(countryList);
+                    }
+                });
+            }
+            else{
+                alert("error for parsing country to full name");
+            }
+        
+        });
+    }
+
+    // DO NOT put anything outside of for loop because it will
+    // mess up the flow and will run the other functions
+    // outside before the for loop is done
 }
 
 
+
+
+// Display countries in order to screen
+function displayCountries(countryList){
+    console.log("Final list is:");
+    console.log(countryList);
+}
 
 
 function dog(){
@@ -129,4 +154,4 @@ function dogImage(pic){
 }
 
 // events
-getAgePrediction("ray");
+getAgePrediction("martin");
