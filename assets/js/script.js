@@ -193,4 +193,4 @@ function dogImage(pic){
 }
 
 // events
-getAgePrediction("joshua");
+getAgePrediction("dave");
