@@ -13,21 +13,25 @@
 </head>
 <body>
     <header class="header"> 
-        <h1>
-           Name Game
-            </h1>
-            </header>
+        <h1 class="is-size-1">
+            Name Game
+        </h1>
+    </header>
 
-    <div class="" style="min-height: 300px;">
         
-        <div class="is-flex is-justify-content-center"> Enter Your Name
-            <input id="enter-name" type="text" class="form-control">
-            <button class="btn btn-primary" type="button" id="search-button">Search</button>
+        <div class="is-flex is-flex-wrap-wrap is-justify-content-center"> 
+            <h2 class="is-size-3 width-100 has-text-centered mt-3">Enter Your Name</h2>
+            <div class="is-flex mt-3 is-justify-content-center width-100">
+                <input id="enter-name" type="text" class="p-2 is-size-5" placeholder="Enter Name">
+            </div>
+            
+            <button class="btn btn-primary mt-3 is-size-5 pb-2 pt-2 pl-4 pr-4 has-background-success" type="button" id="search-button">Search</button>
         </div>
 
         <section id="results">
             <div class="flex-row">
             <div class="info">
+
             <article class="nameInfo">
                 
                 <div class="nameStats">
@@ -56,14 +60,17 @@
             </article>
             </div>
         </section>
-        <div class=""></div>
-        <div id="wow" class=""></div>
-    </div>
+
+        <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
+            <h2 class="is-size-3 width-100 has-text-centered">Your Random Dog:</h2>
+            <div id="wow" class="mt-6 is-flex is-justify-content-center mb-5"></div>
+        </div>
+        
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="./assets/js/script.js"></script>
-    <footer> 
+    <footer class="gold"> 
         <div class="is-flex is-justify-content-center">
             &copy; 2021 NameGame, Inc.
         </div>
