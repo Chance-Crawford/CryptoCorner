@@ -2,7 +2,7 @@ header {
     padding: 20px 35px;
     background-color: gold;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
     top: 0;
 }
@@ -16,9 +16,9 @@ header h1 {
 footer {
     width: 100%;
     padding: 40px 35px;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
+    
+    
+    
 }
 
 section {
