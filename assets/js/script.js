@@ -1,5 +1,28 @@
 
+var inputBar = document.querySelector("#enter-name");
+var searchForm = document.querySelector("#search-form");
 
+var ageInfo = document.querySelector("#age-info");
+var genderInfo = document.querySelector("#gender-info");
+var nationInfo = document.querySelector("#nation-info");
+
+function getName(event){
+    event.preventDefault();
+
+    var errorField = document.querySelector("#error-field");
+    var name = inputBar.value.trim();
+
+    errorField.textContent = "";
+
+    if(name){
+        getAgePrediction(name);
+    }
+    else{
+        errorField.textContent = "Please enter a name!"
+        return;
+    }
+    
+}
 
 function getAgePrediction(name){
     fetch("https://api.agify.io?name=" + name.toLowerCase().trim()).then( (response) => {
@@ -9,9 +32,10 @@ function getAgePrediction(name){
                 console.log(data);
                 if(data.age){
                     getPredictedGender(name.toLowerCase().trim());
+                    displayAge(data);
                 }
                 else{
-                    console.log("No data given for age");
+                    ageInfo.textContent = "Not enough data to determine age.";
                     getPredictedGender(name.toLowerCase().trim());
                 }
                 
@@ -26,6 +50,25 @@ function getAgePrediction(name){
 
 }
 
+// display info to page
+
+function displayAge(ageObj){
+    ageInfo.innerHTML = "You have a predicted age of " + ageObj.age + ".<br>Based on " + ageObj.count + " people.";
+}
+
+function displayGender(genderObj){
+    var percent = genderObj.probability.toString().split(".")[1];
+
+    if(percent.length == 1){
+        percent += "0%";
+    }
+    else{
+        percent += "%";
+    }
+
+    genderInfo.innerHTML = "There is a " + percent + " chance you are " + genderObj.gender + ".<br>Based on " + genderObj.count + " people.";
+}
+
 function getPredictedGender(name){
     fetch("https://api.genderize.io?name=" + name).then( (response) => {
         
@@ -34,9 +77,10 @@ function getPredictedGender(name){
                 console.log(data);
                 if(data.gender){
                     getPredictedNationality(name);
+                    displayGender(data);
                 }
                 else{
-                    console.log("No data given for gender");
+                    genderInfo.textContent = "Not enough data to determine gender.";
                     getPredictedNationality(name);
                 }
                 
@@ -62,7 +106,7 @@ function getPredictedNationality(name){
                     dog();
                 }
                 else{
-                    console.log("No data given for countries");
+                    nationInfo.textContent = "Not enough data to determine countries.";
                 }
 
             });
@@ -160,9 +204,19 @@ async function parseCountries(dataObj){
 // from that country. lists correspond to eachother.
 // so countryList[0] has the probability of probableList[0]
 function displayCountries(countryList, probableList){
-    console.log("Final list is:");
-    console.log(countryList);
-    console.log(probableList);
+
+    nationInfo.textContent = "";
+
+    for(var i = 0; i < countryList.length; i++){
+
+        if(i == 0){
+            nationInfo.innerHTML += (i + 1) + ". " + countryList[i] + ". " + probableList[i] + "% chance";
+        }
+        else{
+            nationInfo.innerHTML += "<br>" + (i + 1) + ". " + countryList[i] + ". " + probableList[i] + "% chance";
+        }
+        
+    }
 }
 
 
@@ -185,6 +239,8 @@ function dog(){
 function dogImage(pic){
     var divEl = document.querySelector("#wow");
 
+    divEl.textContent = "";
+
     var image = document.createElement("img");
     image.setAttribute("src", pic.message);
     image.style = "width: 75%;";
@@ -193,4 +249,4 @@ function dogImage(pic){
 }
 
 // events
-getAgePrediction("dave");
+searchForm.addEventListener("submit", getName);

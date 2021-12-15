@@ -19,13 +19,17 @@
     </header>
 
         
-        <div class="is-flex is-flex-wrap-wrap is-justify-content-center"> 
+        <form id="search-form" class="is-flex is-flex-wrap-wrap is-justify-content-center"> 
             <h2 class="is-size-3 width-100 has-text-centered mt-3">Enter Your Name</h2>
             <div class="is-flex mt-3 is-justify-content-center width-100">
                 <input id="enter-name" type="text" class="p-2 is-size-5" placeholder="Enter Name">
             </div>
             
-            <button class="btn btn-primary mt-3 is-size-5 pb-2 pt-2 pl-4 pr-4 has-background-success" type="button" id="search-button">Search</button>
+            <button class="btn btn-primary mt-3 is-size-5 pb-2 pt-2 pl-4 pr-4 has-background-success" type="submit" id="search-button">Search</button>
+        </form>
+
+        <div id="error-field" class="has-text-danger mt-1 has-text-centered is-size-5">
+
         </div>
 
         <section id="results">
@@ -37,7 +41,7 @@
                 <div class="nameStats">
                     <h3>Age</h3>
                     
-                    <p>Age stats will go here.</p>
+                    <p id="age-info">Age stats will go here.</p>
                 </div>
             </article>
             
@@ -46,7 +50,7 @@
                 <div class="nameStats">
                     <h3>Gender</h3>
                     
-                    <p>Gender stats will go here.</p>
+                    <p id="gender-info">Gender stats will go here.</p>
                 </div>
             </article>
            
@@ -55,7 +59,7 @@
                 <div class="nameStats">
                     <h3>Nationality</h3>
                     
-                    <p>Nationality stats will go here.</p>
+                    <p id="nation-info">Nationality stats will go here.</p>
                 </div>
             </article>
             </div>
