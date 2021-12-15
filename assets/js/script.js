@@ -8,6 +8,27 @@ var ageInfo = document.querySelector("#age-info");
 var genderInfo = document.querySelector("#gender-info");
 var nationInfo = document.querySelector("#nation-info");
 
+var noDataCounter = 0;
+
+var prevName = "";
+
+
+function saveName(name){
+    localStorage.setItem("name", name);
+}
+
+
+function loadName(){
+    prevName = localStorage.getItem("name");
+
+    if(prevName){
+        inputBar.value = prevName;
+        getAgePrediction(prevName);
+    }
+}
+
+
+
 function getName(event){
     event.preventDefault();
 
@@ -21,6 +42,7 @@ function getName(event){
     if(name){
         errorField.className += " purple"
         errorField.textContent = "One moment please...";
+        saveName(name);
         getAgePrediction(name);
     }
     else{
@@ -44,6 +66,7 @@ function getAgePrediction(name){
                 else{
                     ageInfo.textContent = "Not enough data to determine age.";
                     getPredictedGender(name.toLowerCase().trim());
+                    noDataCounter++;
                 }
                 
             });
@@ -89,6 +112,7 @@ function getPredictedGender(name){
                 else{
                     genderInfo.textContent = "Not enough data to determine gender.";
                     getPredictedNationality(name);
+                    noDataCounter++;
                 }
                 
                 
@@ -113,8 +137,20 @@ function getPredictedNationality(name){
                     dog();
                 }
                 else{
-                    errorField.textContent = "Sorry, not enough data."
                     nationInfo.textContent = "Not enough data to determine countries.";
+                    noDataCounter++;
+                    
+                    // if at least one box has data
+                    if(noDataCounter < 3){
+                        dog();
+                        noDataCounter = 0;
+                    }
+                    // if all 3 boxes have no data
+                    if(noDataCounter >= 3){
+                        errorField.textContent = "Sorry, not enough data.";
+                        document.querySelector("#wow").textContent = "";
+                        noDataCounter = 0;
+                    }
                 }
 
             });
@@ -153,7 +189,7 @@ async function parseCountries(dataObj){
 
         // if first number in string is 0, remove first number
         if(prob[0] === "0"){
-            prob = prob.slice(1)
+            prob = prob.slice(1);
         }
 
         // this would mean that the nationalize api returned "1"
@@ -265,5 +301,8 @@ function dogImage(pic){
     divEl.appendChild(image);
 }
 
+
+
 // events
+loadName();
 searchForm.addEventListener("submit", getName);
