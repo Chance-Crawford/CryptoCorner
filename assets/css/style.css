@@ -50,6 +50,9 @@ section {
     font-size: 17px;
 }
 
+.dog-pic{
+    min-height: 18vh;
+}
 
 .flex-row {
     display: flex;
@@ -61,4 +64,8 @@ section {
 
 .gold{
     background-color: gold;
+}
+
+.purple{
+    color: purple;
 }

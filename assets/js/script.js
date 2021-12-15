@@ -2,6 +2,8 @@
 var inputBar = document.querySelector("#enter-name");
 var searchForm = document.querySelector("#search-form");
 
+var errorField = document.querySelector("#error-field");
+
 var ageInfo = document.querySelector("#age-info");
 var genderInfo = document.querySelector("#gender-info");
 var nationInfo = document.querySelector("#nation-info");
@@ -9,15 +11,20 @@ var nationInfo = document.querySelector("#nation-info");
 function getName(event){
     event.preventDefault();
 
-    var errorField = document.querySelector("#error-field");
     var name = inputBar.value.trim();
 
     errorField.textContent = "";
+    
+    errorField.classList.remove("has-text-danger");
+    errorField.classList.remove("purple");
 
     if(name){
+        errorField.className += " purple"
+        errorField.textContent = "One moment please...";
         getAgePrediction(name);
     }
     else{
+        errorField.className += " has-text-danger"
         errorField.textContent = "Please enter a name!"
         return;
     }
@@ -42,7 +49,7 @@ function getAgePrediction(name){
             });
         }
         else{
-            alert("error for getting age");
+            errorField.textContent = "error for getting age";
         }
         
     });
@@ -88,7 +95,7 @@ function getPredictedGender(name){
             });
         }
         else{
-            alert("error for getting gender");
+            errorField.textContent = "error for getting gender";
         }
         
     });
@@ -106,13 +113,14 @@ function getPredictedNationality(name){
                     dog();
                 }
                 else{
+                    errorField.textContent = "Sorry, not enough data."
                     nationInfo.textContent = "Not enough data to determine countries.";
                 }
 
             });
         }
         else{
-            alert("error for getting nationality countries");
+            errorField.textContent = "error for getting nationality countries";
         }
         
     });
@@ -146,6 +154,13 @@ async function parseCountries(dataObj){
         // if first number in string is 0, remove first number
         if(prob[0] === "0"){
             prob = prob.slice(1)
+        }
+
+        // this would mean that the nationalize api returned "1"
+        // which is supposed to be equal to 100. this catches that error after 
+        // we parsed the string
+        if(prob === "0.0"){
+            prob = "100";
         }
         console.log(prob);
 
@@ -183,7 +198,7 @@ async function parseCountries(dataObj){
                 });
             }
             else{
-                alert("error for parsing country to full name");
+                errorField.textContent = "error for parsing country to full name";
             }
         
         });
@@ -229,7 +244,7 @@ function dog(){
             });
         }
         else{
-            alert("error for getting dog image");
+            errorField.textContent = "error for getting dog image";
         }
         
     });
@@ -240,6 +255,8 @@ function dogImage(pic){
     var divEl = document.querySelector("#wow");
 
     divEl.textContent = "";
+
+    errorField.textContent = "";
 
     var image = document.createElement("img");
     image.setAttribute("src", pic.message);
