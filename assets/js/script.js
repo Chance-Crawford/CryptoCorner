@@ -208,7 +208,7 @@ async function parseCountries(dataObj){
         // some of the countries could display out of order.
         // because the for loop would continue on to the
         // next index in the array
-        await fetch("http://api.worldbank.org/v2/country/" + dataObj.country[i].country_id + "?format=json").then( (response) => {
+        await fetch("https://api.worldbank.org/v2/country/" + dataObj.country[i].country_id + "?format=json").then( (response) => {
             
         // everything in here runs first
         // before it moves on to the next for loop fetch
