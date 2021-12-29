@@ -13,7 +13,7 @@
 </head>
 <body>
     <header class="header"> 
-        <h1 class="is-size-1">
+        <h1 class="header-text">
             Name Game
         </h1>
     </header>
@@ -22,10 +22,12 @@
         <form id="search-form" class="is-flex is-flex-wrap-wrap is-justify-content-center"> 
             <h2 class="is-size-3 width-100 has-text-centered mt-3">Enter Your Name</h2>
             <div class="is-flex mt-3 is-justify-content-center width-100">
-                <input id="enter-name" type="text" class="p-2 is-size-5" placeholder="Enter Name">
+                <input id="enter-name" type="text" class="p-2 is-size-5 mt-1" placeholder="Enter Name">
             </div>
             
-            <button class="btn btn-primary mt-3 is-size-5 pb-2 pt-2 pl-4 pr-4 has-background-success" type="submit" id="search-button">Search</button>
+            <button class="btn btn-primary mt-5 is-size-5 pb-2 pt-2 pl-5 pr-5 search-btn" type="submit" id="search-button">
+                <span class="search-btn-text">Search</span>
+            </button>
         </form>
 
         <div id="error-field" class="mt-1 has-text-centered is-size-5 error-field">
@@ -33,41 +35,43 @@
         </div>
 
         <section id="results">
-            <div class="flex-row">
+
             <div class="info">
 
-            <article class="nameInfo">
-                
-                <div class="nameStats">
-                    <h3>Age</h3>
+                <article class="nameInfo">
                     
-                    <p id="age-info">Age stats will go here.</p>
-                </div>
-            </article>
+                    <div class="nameStats">
+                        <h3>Age</h3>
+                        
+                        <p id="age-info" class="mt-2">Age stats will go here.</p>
+                    </div>
+                </article>
+                
+                <article class="nameInfo">
+                
+                    <div class="nameStats">
+                        <h3>Gender</h3>
+                        
+                        <p id="gender-info" class="mt-2">Gender stats will go here.</p>
+                    </div>
+                </article>
             
-            <article class="nameInfo">
-               
-                <div class="nameStats">
-                    <h3>Gender</h3>
+                <article class="nameInfo">
                     
-                    <p id="gender-info">Gender stats will go here.</p>
-                </div>
-            </article>
-           
-            <article class="nameInfo">
-                
-                <div class="nameStats">
-                    <h3>Nationality</h3>
-                    
-                    <p id="nation-info">Nationality stats will go here.</p>
-                </div>
-            </article>
+                    <div class="nameStats">
+                        <h3>Nationality</h3>
+                        
+                        <p id="nation-info" class="mt-2">Nationality stats will go here.</p>
+                    </div>
+                </article>
+
             </div>
+
         </section>
 
         <div class="is-flex is-flex-wrap-wrap is-justify-content-center">
 
-            <h2 class="is-size-3 width-100 has-text-centered">Your Random Dog:</h2>
+            <h2 class="is-size-3 width-100 has-text-centered your-dog">Your Random Dog:</h2>
             <div id="wow" class="mt-6 is-flex dog-pic is-justify-content-center mb-5">
 
             </div>

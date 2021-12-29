@@ -2,7 +2,8 @@
 
 header {
     padding: 20px 35px;
-    background-color: gold;
+    background: rgb(255,215,0);
+    background: linear-gradient(180deg, rgba(255,215,0,1) 35%, rgba(248,255,128,1) 92%);
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -26,6 +27,54 @@ section {
     padding: 60px;
 }
 
+.header-text{
+    font-size: 4rem;
+}
+
+#search-form h2{
+    font-weight: bold;
+}
+
+/* button gradient transition */
+
+.search-btn{
+    font-weight: bold;
+    border-radius: 10px;
+    border: 1px solid rgb(49, 43, 43);
+    position: relative;
+    z-index: 1;
+    background-color: rgb(128,0,128);
+    background-image: linear-gradient(180deg, rgba(128,0,128,1) 18%, rgba(222,110,255,1) 87%);
+    color: white;
+    cursor: pointer;
+}
+
+.search-btn::after{
+    content: "";
+    position: absolute;
+    z-index: 2;
+    opacity: 0;
+    top: 0;
+    left: 0;
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    background: #de6eff;
+    transition: opacity 0.25s ease-in-out;
+}
+
+.search-btn:hover::after{
+    opacity: 1;
+}
+
+.search-btn-text{
+    position: relative;
+    z-index: 3;
+}
+
+
+/* info boxes */
+
 .info {
     width: 100%;
     margin: 0 auto;
@@ -35,7 +84,9 @@ section {
 }
 .nameInfo {
     margin: 20px;
-    background: gold;
+    border-radius: 15px;
+    background: rgb(255,215,0);
+    background: linear-gradient(180deg, rgba(255,215,0,1) 18%, rgba(248,255,128,1) 87%);
     color: purple;
     flex: 1;
 }
@@ -45,13 +96,18 @@ section {
 }
 .nameStats h3 {
     font-size: 28px;
+    font-weight: bold;
 }
 .nameStats p {
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .dog-pic{
     min-height: 22vh;
+}
+
+.your-dog{
+    font-weight: bold;
 }
 
 .flex-row {
@@ -62,8 +118,11 @@ section {
     width: 100%;
 }
 
+
+
 .gold{
-    background-color: gold;
+    background: rgb(255,215,0);
+    background: linear-gradient(180deg, rgba(255,215,0,1) 18%, rgba(248,255,128,1) 87%);
 }
 
 .purple{

@@ -296,7 +296,7 @@ function dogImage(pic){
 
     var image = document.createElement("img");
     image.setAttribute("src", pic.message);
-    image.style = "width: 75%;";
+    image.style = "width: 75%; border-radius: 20px;";
 
     divEl.appendChild(image);
 }
