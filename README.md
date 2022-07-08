@@ -22,7 +22,7 @@ Just type the name into the search bar, and press "Enter" or search. The rest is
 * Bulma
 
 
-![name game](./assets/images/Capture.PNG)
+![name game](./assets/images/Capture2.PNG)
 
 ## Website
 https://chance-crawford.github.io/NameGame/
