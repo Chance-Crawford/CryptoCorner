@@ -120,12 +120,18 @@ section {
     width: 100%;
 }
 
-
-
 .prim-color{
     background: var(--primary);
 }
 
 .sec-color{
     color: var(--secondary);
+}
+
+/* media queries */
+
+@media only screen and (max-width: 550px) {
+    .header-text{
+        text-align: center;
+    }
 }
